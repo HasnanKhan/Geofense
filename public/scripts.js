@@ -1,5 +1,5 @@
 async function ipLookUp(ip) {
-    return fetch(`http://localhost:3000/getIPData?ip=${ip}`)
+    return fetch(`/getIPData?ip=${ip}`)
         .then((response) => {
             if (!response.ok) {
                 throw new Error("Network response was not ok");
@@ -10,15 +10,12 @@ async function ipLookUp(ip) {
             return data;
         })
         .catch((error) => {
-            console.error(
-                "There was a problem with the fetch operation:",
-                error
-            );
+            console.error("There was a problem with the fetch operation:", error);
         });
 }
 
 async function safety(ip) {
-    return fetch(`http://localhost:3000/getFraudScore?ip=${ip}`)
+    return fetch(`/getFraudScore?ip=${ip}`)
         .then((response) => {
             if (!response.ok) {
                 throw new Error("Network response was not ok");
@@ -29,10 +26,7 @@ async function safety(ip) {
             return data;
         })
         .catch((error) => {
-            console.error(
-                "There was a problem with the fetch operation:",
-                error
-            );
+            console.error("There was a problem with the fetch operation:", error);
         });
 }
 
@@ -40,6 +34,7 @@ let map;
 async function mapData() {
     const mapContainer = document.getElementById("map");
     mapContainer.innerHTML = "";
+
     const ip =
         document.getElementById("octet1").value +
         "." +
